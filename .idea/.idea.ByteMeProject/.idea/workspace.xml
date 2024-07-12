@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d9e1d239-5bcf-4d4f-95de-04b525486b18" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.ByteMeProject/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ByteMeProject/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemy Ai/ShootingEnemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enemy Ai/ShootingEnemy.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,7 +93,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1720777297452</updated>
-      <workItem from="1720777298601" duration="418000" />
+      <workItem from="1720777298601" duration="1013000" />
     </task>
     <servers />
   </component>

@@ -16,7 +16,7 @@ public class ShootingAngel : MonoBehaviour
     private Rigidbody2D rb;
     private Transform CurrentPoint;
     private Transform player;
-    private bool facingRight = false; //my enemy is initially facing left
+    private bool facingRight = true; //my enemy is initially facing left
     private float nextShootTime = 0f;
     private bool isFollowingPlayer = false;
 
