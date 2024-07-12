@@ -9,7 +9,7 @@ public class ShootingAngel : MonoBehaviour
     public float Speed;
     public float knockbackForce = 10f;
     public GameObject projectilePrefab;
-    public Transform shootPoint; // where the projectile come from/originate
+    public Transform shootPoint; // where the projectile comes from/originate
     public float shootingInterval = 2f;
     public float detectionRadius = 10f;
 
@@ -47,10 +47,15 @@ public class ShootingAngel : MonoBehaviour
         {
             Move();
 
-            if (Time.time >= nextShootTime)
+            // Check if the enemy is facing the player before shooting
+            Vector2 directionToPlayer = (player.position - transform.position).normalized;
+            if ((facingRight && directionToPlayer.x > 0) || (!facingRight && directionToPlayer.x < 0))
             {
-                Shoot();
-                nextShootTime = Time.time + shootingInterval;
+                if (Time.time >= nextShootTime)
+                {
+                    Shoot();
+                    nextShootTime = Time.time + shootingInterval;
+                }
             }
         }
         else
