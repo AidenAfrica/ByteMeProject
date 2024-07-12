@@ -7,16 +7,17 @@ public class ShootingAngel : MonoBehaviour
     public GameObject PointA;
     public GameObject PointB;
     public float Speed;
-    public float knockbackForce = 10f;
+  //  public float knockbackForce = 10f;
     public GameObject projectilePrefab;
     public Transform shootPoint; // where the projectile comes from/originate
     public float shootingInterval = 2f;
     public float detectionRadius = 10f;
+    public float bulletSpeed = 5f;
 
     private Rigidbody2D rb;
     private Transform CurrentPoint;
     private Transform player;
-    private bool facingRight = true; //my enemy is initially facing left
+    private bool facingRight = false; //my enemy is initially facing left
     private float nextShootTime = 0f;
     private bool isFollowingPlayer = false;
 
@@ -87,7 +88,7 @@ public class ShootingAngel : MonoBehaviour
         Rigidbody2D projectileRb = projectile.GetComponent<Rigidbody2D>();
 
         Vector2 direction = (player.position - shootPoint.position).normalized;
-        projectileRb.velocity = direction * Speed;
+        projectileRb.velocity = direction * bulletSpeed;
     }
 
     private void Flip()
