@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PatrollingAngel : MonoBehaviour
+public class EnemyFollow : MonoBehaviour
 {
     public GameObject PointA;
     public GameObject PointB;
