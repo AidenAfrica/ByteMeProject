@@ -9,16 +9,20 @@ public class SabotageCode : MonoBehaviour
     [SerializeField] float destroyDelay = 0.5f;
 
     public bool hasPackage;
-
-    SpriteRenderer spriteRenderer;
+    private SpriteRenderer spriteRenderer;
+    private PointSystem pointSystem;
+    private BrainGame brainGame;
 
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        pointSystem = FindObjectOfType<PointSystem>();
+        brainGame = FindObjectOfType<BrainGame>();
     }
+
     void OnCollisionEnter2D(Collision2D other)
     {
-        Debug.Log("We have sabotged the object!");
+        Debug.Log("We have sabotaged the object!");
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -28,8 +32,7 @@ public class SabotageCode : MonoBehaviour
             Debug.Log("Sabotage Object picked up!");
             hasPackage = true;
             spriteRenderer.color = hasPackageColor;
-            Destroy(other.gameObject, 0.5f);
-
+            Destroy(other.gameObject, destroyDelay);
         }
 
         if (other.tag == "Sabotaged" && hasPackage)
@@ -37,6 +40,16 @@ public class SabotageCode : MonoBehaviour
             Debug.Log("You have sabotaged the object!");
             hasPackage = false;
             spriteRenderer.color = noPackageColor;
+
+            // Check if it's a brain game sabotage
+            if (brainGame != null)
+            {
+                brainGame.StartBrainGame();
+            }
+            else
+            {
+                Debug.LogError("BrainGame script not found!");
+            }
         }
     }
 }
