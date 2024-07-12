@@ -10,7 +10,11 @@ public class Projectile : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        rb.velocity = transform.right * bulletSpeed;
+    }
+
+    public void Initialize(Vector2 direction)
+    {
+        rb.velocity = direction * bulletSpeed;
     }
 
     void OnCollisionEnter2D(Collision2D collision)
