@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement; 
+
 public class IntroDialogue : MonoBehaviour
 {
     public GameObject dialoguePanel;
@@ -35,7 +36,7 @@ public class IntroDialogue : MonoBehaviour
 
     IEnumerator Typing()
     {
-        Debug.Log("Starting Typing dialogue.");
+        Debug.Log("Starting Typing coroutine.");
         dialogueText.text = "";
         isTyping = true;
         foreach (char letter in dialogue[index].ToCharArray())
@@ -44,7 +45,7 @@ public class IntroDialogue : MonoBehaviour
             yield return new WaitForSeconds(wordSpeed);
         }
         isTyping = false;
-        Debug.Log("Finished Typing dialogue.");
+        Debug.Log("Finished Typing coroutine.");
         continueButton.SetActive(true);
     }
 
@@ -58,12 +59,12 @@ public class IntroDialogue : MonoBehaviour
         }
         else
         {
-            zeroText();
+            continueButton.SetActive(false); 
             startGameButton.SetActive(true); 
         }
     }
 
-    
+    // Method to load the game scene
     public void StartGame()
     {
         SceneManager.LoadScene("LevelDesign"); 
