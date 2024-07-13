@@ -11,11 +11,11 @@ public class Timer : MonoBehaviour
     void Start()
     {
         UpdateTimerText();
-        Debug.Log("start is called");
+        Debug.Log("Start is called");
         pointSystem = FindObjectOfType<PointSystem>();
     }
 
-    public void Update()
+    void Update()
     {
         if (timerActive)
         {
@@ -28,13 +28,14 @@ public class Timer : MonoBehaviour
             {
                 timer = 0;
                 timerActive = false;
-                UpdateTimerText();
+                UpdateTimerText(); 
+                StopTimer();
                 CheckGameOver();
             }
         }
     }
 
-    public void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Player")
         {
@@ -43,14 +44,14 @@ public class Timer : MonoBehaviour
         }
     }
 
-    public void UpdateTimerText()
+    void UpdateTimerText()
     {
         int minutes = Mathf.FloorToInt(timer / 60);
         int seconds = Mathf.FloorToInt(timer % 60);
         timerText.text = string.Format("Time: {0:00}:{1:00}", minutes, seconds);
     }
 
-    public void CheckGameOver()
+    void CheckGameOver()
     {
         if (pointSystem != null)
         {
@@ -67,5 +68,10 @@ public class Timer : MonoBehaviour
         {
             Debug.LogError("PointSystem script not found!");
         }
+    }
+
+    public void StopTimer()
+    {
+        timerActive = false;
     }
 }

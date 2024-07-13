@@ -67,11 +67,11 @@ public class SabotageCode : MonoBehaviour
                         prefabInfo.disableCollider.enabled = false;
                     }
 
-                    // Example: assuming pointSystem has a method to update points
-                    //if (pointSystem != null)
-                    //{
-                    //    pointSystem.AddPoints(10); // Example: Add points when object is picked up
-                    //}
+                    // Add points when object is picked up
+                    if (pointSystem != null)
+                    {
+                        pointSystem.AddPoints(10); // Example: Add 10 points when object is picked up
+                    }
 
                     return; // Exit loop once a matching type is found
                 }
@@ -97,6 +97,12 @@ public class SabotageCode : MonoBehaviour
                         GameObject copyObject = Instantiate(currentCollectedObject, dropOffZone.transform.position, Quaternion.identity);
                         Destroy(currentCollectedObject); // Destroy the original instance with the player
                         currentCollectedObject = null; // Clear reference
+                    }
+
+                    // Add points when object is dropped off
+                    if (pointSystem != null)
+                    {
+                        pointSystem.AddPoints(20); // Example: Add 20 points when object is dropped off
                     }
 
                     // Check if it's a brain game sabotage

@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class PointSystem : MonoBehaviour
 {
@@ -9,11 +10,13 @@ public class PointSystem : MonoBehaviour
 
     public int currentPoints = 0;
     private bool gameActive = true;
+    private Timer timer;
 
     void Start()
     {
         UpdatePointsText();
         resultText.text = "";
+        timer = FindObjectOfType<Timer>();
     }
 
     public void AddPoints(int points)
@@ -37,15 +40,33 @@ public class PointSystem : MonoBehaviour
 
     public void WinGame()
     {
-        gameActive = false;
-        resultText.text = "You Win!";
-        Debug.Log("You Win!");
+        if (gameActive)
+        {
+            gameActive = false;
+            resultText.text = "You Win!";
+            Debug.Log("You Win!");
+
+            if (timer != null)
+            {
+                timer.StopTimer();
+            }
+
+            // Load win screen here
+            SceneManager.LoadScene("WinScene");
+        }
     }
 
     public void LoseGame()
     {
-        gameActive = false;
-        resultText.text = "You Lose!";
-        Debug.Log("You Lose!");
+        if (gameActive)
+        {
+            gameActive = false;
+            resultText.text = "You Lose!";
+            Debug.Log("You Lose!");
+
+            // Load lose screen here
+            SceneManager.LoadScene("LoseScene");
+
+        }
     }
 }
