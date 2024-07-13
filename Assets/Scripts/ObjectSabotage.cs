@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class SabotageCode : MonoBehaviour
 {
@@ -9,6 +8,15 @@ public class SabotageCode : MonoBehaviour
     {
         public string type; // Identifier for the type of prefab
         public GameObject prefab; // Reference to the prefab
+        public Collider2D disableCollider; // Collider to disable when this prefab is collected
+    }
+
+    [System.Serializable]
+    public class DropOffZone
+    {
+        public string zoneName; // Name or identifier for the drop-off zone (for debugging purposes)
+        public Transform transform; // Reference to the drop-off zone's transform
+        public bool isEnabled = true; // Flag to enable/disable this drop-off zone
     }
 
     [SerializeField] Color32 hasPackageColor = new Color32(1, 1, 1, 1);
@@ -16,7 +24,7 @@ public class SabotageCode : MonoBehaviour
     [SerializeField] float destroyDelay = 0.5f;
     [SerializeField] List<PrefabInfo> prefabList; // List of different prefab types
     [SerializeField] Transform playerTransform; // Reference to the player's transform
-    [SerializeField] Transform dropOffZoneTransform; // Reference to the drop-off zone's transform
+    [SerializeField] List<DropOffZone> dropOffZones; // List of drop-off zones
 
     private bool hasPackage;
     private SpriteRenderer spriteRenderer;
@@ -53,12 +61,16 @@ public class SabotageCode : MonoBehaviour
                     currentCollectedObject.transform.localPosition = Vector3.zero; // Set position relative to player
                     currentCollectedObject.transform.SetParent(playerTransform); // Set parent to player
 
-                    //Destroy(other.gameObject, destroyDelay); // Destroy the trigger object
+                    // Disable specific collider if provided in PrefabInfo
+                    if (prefabInfo.disableCollider != null)
+                    {
+                        prefabInfo.disableCollider.enabled = false;
+                    }
 
                     // Example: assuming pointSystem has a method to update points
                     //if (pointSystem != null)
                     //{
-                       // pointSystem.AddPoints(10); // Example: Add points when object is picked up
+                    //    pointSystem.AddPoints(10); // Example: Add points when object is picked up
                     //}
 
                     return; // Exit loop once a matching type is found
@@ -66,34 +78,42 @@ public class SabotageCode : MonoBehaviour
             }
         }
 
-        if (hasPackage && other.tag == "Sabotaged")
+        if (hasPackage && other.CompareTag("Sabotaged"))
         {
             Debug.Log("You have sabotaged the object!");
             hasPackage = false;
             spriteRenderer.color = noPackageColor;
 
-            if (currentCollectedObject != null)
+            // Find an available drop-off zone
+            foreach (var dropOffZone in dropOffZones)
             {
-                GameObject copyObject = Instantiate (currentCollectedObject, dropOffZoneTransform.position, Quaternion.identity);
-                copyObject.transform.SetParent(null);
-                Destroy(currentCollectedObject);
+                if (dropOffZone.isEnabled)
+                {
+                    Debug.Log("Dropping off at: " + dropOffZone.zoneName);
+
+                    // Move collectedPrefab to drop-off zone and instantiate it there
+                    if (currentCollectedObject != null)
+                    {
+                        GameObject copyObject = Instantiate(currentCollectedObject, dropOffZone.transform.position, Quaternion.identity);
+                        Destroy(currentCollectedObject); // Destroy the original instance with the player
+                        currentCollectedObject = null; // Clear reference
+                    }
+
+                    // Check if it's a brain game sabotage
+                    if (brainGame != null)
+                    {
+                        brainGame.StartBrainGame();
+                    }
+                    else
+                    {
+                        Debug.LogError("BrainGame script not found!");
+                    }
+
+                    return; // Exit loop once a drop-off zone is found
+                }
             }
 
-            // Move collectedPrefab to drop-off zone and instantiate it there
-            currentCollectedObject.transform.SetParent(null); // Unparent from player
-            currentCollectedObject.transform.position = dropOffZoneTransform.position; // Move to drop-off zone
-            currentCollectedObject = null; // Clear reference
-
-            // Check if it's a brain game sabotage
-            if (brainGame != null)
-            {
-                brainGame.StartBrainGame();
-            }
-            else
-            {
-                Debug.LogError("BrainGame script not found!");
-            }
+            Debug.LogWarning("No available drop-off zone found!");
         }
     }
 }
-
