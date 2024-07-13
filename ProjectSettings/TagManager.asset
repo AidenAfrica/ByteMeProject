@@ -7,6 +7,16 @@ TagManager:
   - EnemyBase
   - Sabotage
   - Sabotaged
+  - Spikes
+  - Laxatives
+  - Sugar
+  - Documents
+  - Ladder
+  - Dining Hall
+  - Bedroom
+  - Lookout Towers
+  - Storage Room
+  - Office
   layers:
   - Default
   - TransparentFX
