@@ -775,7 +775,6 @@ MonoBehaviour:
   prefabList: []
   playerTransform: {fileID: 780916451}
   dropOffZoneTransform: {fileID: 94883411}
-  hasPackage: 0
 --- !u!60 &94883413
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -1120,7 +1119,6 @@ MonoBehaviour:
   prefabList: []
   playerTransform: {fileID: 0}
   dropOffZoneTransform: {fileID: 0}
-  hasPackage: 0
 --- !u!1 &209114704
 GameObject:
   m_ObjectHideFlags: 0
@@ -2204,7 +2202,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1450293805}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &482349055
@@ -3131,7 +3130,6 @@ MonoBehaviour:
   prefabList: []
   playerTransform: {fileID: 780916451}
   dropOffZoneTransform: {fileID: 704872870}
-  hasPackage: 0
 --- !u!1 &761811704
 GameObject:
   m_ObjectHideFlags: 0
@@ -3218,7 +3216,6 @@ MonoBehaviour:
   prefabList: []
   playerTransform: {fileID: 0}
   dropOffZoneTransform: {fileID: 0}
-  hasPackage: 0
 --- !u!212 &761811707
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3504,7 +3501,6 @@ MonoBehaviour:
     prefab: {fileID: 1078264488}
   playerTransform: {fileID: 780916451}
   dropOffZoneTransform: {fileID: 704872870}
-  hasPackage: 0
 --- !u!1 &819169573
 GameObject:
   m_ObjectHideFlags: 0
@@ -4419,7 +4415,6 @@ MonoBehaviour:
   prefabList: []
   playerTransform: {fileID: 780916451}
   dropOffZoneTransform: {fileID: 999449390}
-  hasPackage: 0
 --- !u!1 &1041419698
 GameObject:
   m_ObjectHideFlags: 0
@@ -16939,7 +16934,6 @@ MonoBehaviour:
   prefabList: []
   playerTransform: {fileID: 780916451}
   dropOffZoneTransform: {fileID: 1247792185}
-  hasPackage: 0
 --- !u!1 &1252057314 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5937531003696027346, guid: ac3845c3d718bcb4baebbc0bc08055c8, type: 3}
@@ -17875,7 +17869,7 @@ RectTransform:
   - {fileID: 2142868704}
   - {fileID: 1058490076}
   - {fileID: 85065409}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 433355252}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -19039,7 +19033,6 @@ MonoBehaviour:
   prefabList: []
   playerTransform: {fileID: 780916451}
   dropOffZoneTransform: {fileID: 1724170554}
-  hasPackage: 0
 --- !u!1 &1758939124
 GameObject:
   m_ObjectHideFlags: 0
@@ -20506,7 +20499,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9198571996234993897, guid: 7daa2fc2d6331bc4cb957ba7786a8f7b, type: 3}
       propertyPath: m_TagString
-      value: Ladder
+      value: Sugar
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -20524,11 +20517,10 @@ SceneRoots:
   - {fileID: 1258263006}
   - {fileID: 780916451}
   - {fileID: 1978702472}
-  - {fileID: 1450293805}
-  - {fileID: 1244054623}
   - {fileID: 290584880}
   - {fileID: 1529893153}
   - {fileID: 54197831}
+  - {fileID: 1244054623}
   - {fileID: 67145408}
   - {fileID: 1041419700}
   - {fileID: 153188198}
